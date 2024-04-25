@@ -1,12 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addTodo, fetchTodo, removeTodo } from "../actions"
 
 export const Todo = () => {
+    const dispatch = useDispatch()
+    const todos = useSelector((state) => state.todo)
     const [newTodo,setNewTodo] = useState({
         title: "",
         description: "",
         status: "",
     }) 
-    const [todos, setTodos] = useState([])
+
+    useEffect(() => {
+        dispatch(fetchTodo())
+    }, [dispatch] )
 
     const handleChange = (e) => {
       const name = e.target.name
@@ -16,16 +23,20 @@ export const Todo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        setTodos([...todos, newTodo])
+        dispatch(addTodo(newTodo))
+        setNewTodo({
+            title: "",
+            description: "",
+            status: "",
+        }) 
     }
 
   return(
     <div>  
         <div>
             <form>
-            Title: <input type="text" name="title" value={newTodo.title} onChange={handleChange} />
-            Description: <input type="text" name="description" value={newTodo.description} onChange={handleChange} />
+            Title: <input type="text" name="title" value={newTodo.title} autoComplete="off" onChange={handleChange} />
+            Description: <input type="text" name="description" value={newTodo.description} autoComplete="off" onChange={handleChange} />
             Status:
             <select name="status" onChange={handleChange} >
                 <option >Status</option>
@@ -34,14 +45,15 @@ export const Todo = () => {
             </select>
             <button onClick={handleSubmit} >Add Todo</button>
             </form>   
+
         </div>
         {
             todos.map((element) => 
-                <div>
+                <div key={element._id}>
                 {element.title} : {element.description} : {element.status}
+                <button onClick={()=> dispatch(removeTodo(element._id)) } >Remove</button>
                 </div>
-        )
-        }
+        )}
     </div>
   )
 }
