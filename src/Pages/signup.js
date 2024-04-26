@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUsers, signup } from "../actions"
+import { Link, useNavigate } from "react-router-dom"
 
 export const Signup = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const users = useSelector((state)=> state.user)
-    const status = useSelector((state) => state.isLoggedIn)
     const [userRegistration, setUserRegistration] = useState({
         username: "",
         email: "",
@@ -16,8 +17,6 @@ export const Signup = () => {
     useEffect(() => {
         dispatch(fetchUsers())
     }, [dispatch])
-
-    console.log(status)
 
     const handleSignupChange = (e) => {
         const name = e.target.name
@@ -43,6 +42,7 @@ export const Signup = () => {
                 if (userRegistration.password === userRegistration.confirmPassword) {
                   console.log(userRegistration);
                   dispatch(signup(userRegistration))
+                  navigate("/", { replace: true })
                 } else {
                   console.log("Passwords don't match");
                 }
@@ -60,7 +60,9 @@ export const Signup = () => {
             <input type="text" name="confirmPassword" value={userRegistration.confirmPassword} onChange={handleSignupChange} autoComplete="off" placeholder="Confirm Password" />
             <button onClick={handleSignupSubmit} >SignUp</button>
             </form>
-            <button onClick={() => dispatch({type: "LOGOUT" }) } >Logout</button>
+            <h3>Already Have an account? </h3>
+            <Link to="/login" >Click here to Login</Link>
+
         </div>
     )
 }

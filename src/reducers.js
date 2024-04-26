@@ -33,6 +33,14 @@ export const todosReducer = (state = initialState, action) => {
             loading: false,
             error: null
          }
+         case "UPDATE_TODO": 
+         var findTodo = state.todo.find((item) => item._id === action.payload._id)
+         return{
+            ...state,
+            todo: [...state.todo, findTodo = action.payload],
+            loading: false,
+            error: null
+         } 
          case "REMOVE_TODO":
          return{
             ...state,
