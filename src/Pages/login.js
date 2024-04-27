@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUsers, login } from "../actions"
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./login.css"
 
 export const Login = () => {
@@ -26,20 +29,19 @@ export const Login = () => {
 
     const handleLoginSubmit = (e) => {
       e.preventDefault()
-      console.log(userLogin)
 
       if (!userLogin.email || !userLogin.password) {
-        console.log("Details")
+        toast.warning("Fill all the details")
       }
       else{
         const findUser =  user.find((item) => item.email === userLogin.email );
         if (findUser && findUser.password === userLogin.password) {
             dispatch(login(userLogin))
-             console.log("Welcome");
+             toast.success("Welcome");
              navigate("/", { replace: true })
            } 
            else {
-             console.log("Credentials Invalid")
+             toast.error("Credentials Invalid")
            }
          }
     }
@@ -61,6 +63,7 @@ export const Login = () => {
             </div>
             <h3>Don't have an account?</h3>
             <Link className="Link" to="/signup" >Create an Account here</Link>
+      <ToastContainer autoClose={1000} />
         </div>
     )
 } 

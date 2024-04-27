@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import { fetchUsers, signup } from "../actions"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./login.css"
 
 export const Signup = () => {
@@ -33,20 +36,19 @@ export const Signup = () => {
          !userRegistration.password ||
          !userRegistration.confirmPassword
         ) {
-         console.log("Please fill all the details");
+         toast.warning("Please fill all the details");
           } 
           else 
           {
            const findUser =  users.find((item) => item.email === userRegistration.email || item.username === userRegistration.username );
            if (findUser) {
-                console.log("Email or Username already exist");
+                toast.error("Email or Username already exist");
               } else {
                 if (userRegistration.password === userRegistration.confirmPassword) {
-                  console.log(userRegistration);
                   dispatch(signup(userRegistration))
                   navigate("/", { replace: true })
                 } else {
-                  console.log("Passwords don't match");
+                  toast.error("Passwords don't match");
                 }
               }
             }
@@ -67,7 +69,7 @@ export const Signup = () => {
             </form>
             <h3>Already Have an account? </h3>
             <Link className="Link" to="/login" >Click here to Login</Link>
-
+            <ToastContainer autoClose={1000} />
         </div>
     )
 }
