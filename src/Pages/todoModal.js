@@ -18,7 +18,6 @@ export const TodoModal = () => {
             navigate("/", { replace: true })
         };
     const [newTodo,setNewTodo] = useState({
-      _id: todos ? todos._id : "",
       title: todos ? todos.title: "",
       description: todos ? todos.description : "",
       status: todos ? todos.status : "",
@@ -56,7 +55,7 @@ export const TodoModal = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateTodo(newTodo))
+    dispatch(updateTodo(newTodo,todos._id))
     handleClose()
     setTimeout(() => {
         navigate("/", { replace: true });

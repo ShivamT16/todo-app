@@ -48,10 +48,10 @@ export const removeTodo = (todoId) => async(dispatch) => {
     }
 }
 
-export const updateTodo = (todo) => async(dispatch) => {
+export const updateTodo = (todo,todoID) => async(dispatch) => {
     console.log(todo)
     try{
-        const response = await fetch(`https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo/${todo._id}`,{
+        const response = await fetch(`https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo/${todoID}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

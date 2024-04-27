@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTodo, removeTodo } from "../actions"
 import AddIcon from '@mui/icons-material/Add';
@@ -10,17 +10,23 @@ import "./todo.css"
 export const Todo = () => {
     const dispatch = useDispatch()
     const todos = useSelector((state) => state.todo)
+    const [filter, setFilter] = useState("")
    
     useEffect(() => {
         dispatch(fetchTodo())
     }, [dispatch] )
 
+    const todo = filter.length > 0 ? todos.filter((items) => items.title.toLowerCase().includes(filter) || items.description.toLowerCase().includes(filter)) : todos
+
   return(
-    <div>  
+    <div> 
+        <div className="todo-nav"> 
         <Link className="link" to="/addTodo">New Todo<AddIcon /></Link>
+        <input className="search-input" autoComplete="off" type="text" onChange={(e) => setFilter(e.target.value.toLowerCase())} placeholder="Search..." />
+        </div>
         <div className="todo-main">
-        {
-            todos.map((element) => 
+        { 
+            todo.map((element) => 
                 <div className="todo-list" key={element._id}>
                 <Link className="todo-link" to={`/todo/${element._id}`} >
                 <p className="title">{element.title}</p>
@@ -32,7 +38,7 @@ export const Todo = () => {
                 <Link to={`/editTodo/${element._id}`} > <EditNoteIcon /> </Link>
                 </div>
                 </div>
-        )}
+        ) }
         </div>
     </div>
   )
