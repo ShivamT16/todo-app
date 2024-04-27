@@ -1,7 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTodo, removeTodo } from "../actions"
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Link } from "react-router-dom";
+import "./todo.css"
 
 export const Todo = () => {
     const dispatch = useDispatch()
@@ -13,17 +17,23 @@ export const Todo = () => {
 
   return(
     <div>  
-        <Link to="/addTodo" ><button>Add Todo</button></Link>
+        <Link className="link" to="/addTodo">New Todo<AddIcon /></Link>
+        <div className="todo-main">
         {
             todos.map((element) => 
-                <div key={element._id}>
-                {element.title} : {element.description} : {element.status}
-                <button onClick={()=> dispatch(removeTodo(element._id)) } >Remove</button>
-                <Link to={`/editTodo/${element._id}`} >
-                <button>Edit</button>
+                <div className="todo-list" key={element._id}>
+                <Link className="todo-link" to={`/todo/${element._id}`} >
+                <p className="title">{element.title}</p>
+                <p className="description" >{element.description}</p>
+                <p style={{color: element.status === "Completed" ? "green" : "red"  }} >{element.status}</p>
                 </Link>
+                <div className="btn"> 
+                <p onClick={()=> dispatch(removeTodo(element._id)) } > <DeleteIcon fontSize="small" /> </p>
+                <Link to={`/editTodo/${element._id}`} > <EditNoteIcon /> </Link>
+                </div>
                 </div>
         )}
+        </div>
     </div>
   )
 }

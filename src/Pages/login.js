@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUsers, login } from "../actions"
 import { Link, useNavigate } from "react-router-dom"
+import "./login.css"
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export const Login = () => {
         email: "",
         password: ""
     })
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         dispatch(fetchUsers())
@@ -43,15 +45,22 @@ export const Login = () => {
     }
 
     return(
-        <div>
+        <div className="login">
             <h1>Login</h1>
+            <div className="form" >
             <form>
-            <input type="text" name="email" value={userLogin.email} onChange={handleChange} autoComplete="off" placeholder="Email" />
-            <input type="text" name="password" value={userLogin.password} onChange={handleChange} autoComplete="off" placeholder="Password" />
-            <button onClick={handleLoginSubmit} >Login</button>
+            <div>
+            <input className="input" type="text" name="email" value={userLogin.email} onChange={handleChange} autoComplete="off" placeholder="Email" />
+            </div>
+            <div>
+            <input className="input" type={ show ? "text" : "password" } name="password" value={userLogin.password} onChange={handleChange} autoComplete="off" placeholder="Password" />
+            <button type="button" className="show-btn" onClick={() => setShow(!show) } > {show ? "Hide" : "Show"} </button>
+            </div>
+            <button className="submit-btn" onClick={handleLoginSubmit} >Login</button>
             </form>
+            </div>
             <h3>Don't have an account?</h3>
-            <Link to="/signup" >Create an account</Link>
+            <Link className="Link" to="/signup" >Create an Account here</Link>
         </div>
     )
 } 

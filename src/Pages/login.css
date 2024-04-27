@@ -1,0 +1,32 @@
+.login{
+    border: 2px solid skyblue;
+    border-radius: 2rem;
+    margin: 2rem 22rem;
+    padding-bottom: 2rem;
+}
+.input{
+   margin: 0.5rem 0rem;
+}
+.Link{
+ text-decoration: none;
+ font-size: larger;
+}
+.show-btn{
+    margin-left: -3rem;
+    width: 2.8rem;
+    border: none;
+    background-color: white;
+    color: blue;
+    cursor: pointer;
+}
+.submit-btn{
+    font-size: .9rem;
+    padding: 0.3rem 0.8rem;
+    border: 2px solid skyblue;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: white;
+}
+.submit-btn:hover{
+    background-color: whitesmoke;
+}

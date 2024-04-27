@@ -1,0 +1,12 @@
+.todo-title{
+    font-size: 1.5rem;
+    margin-top: -1rem;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+.todo-description{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: large;
+}

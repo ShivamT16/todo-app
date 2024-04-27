@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchUsers, signup } from "../actions"
 import { Link, useNavigate } from "react-router-dom"
+import { fetchUsers, signup } from "../actions"
+import "./login.css"
 
 export const Signup = () => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ export const Signup = () => {
         password: "",
         confirmPassword: "",
     })
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         dispatch(fetchUsers())
@@ -51,17 +53,20 @@ export const Signup = () => {
     }
 
     return(
-        <div>
+        <div className="login">
             <h1>SignUp</h1>
             <form>
-            <input type="text" name="username" value={userRegistration.username} onChange={handleSignupChange} autoComplete="off" placeholder="Name" />
-            <input type="email" name="email" value={userRegistration.email} onChange={handleSignupChange} autoComplete="off" placeholder="Email" />
-            <input type="text" name="password" value={userRegistration.password} onChange={handleSignupChange} autoComplete="off" placeholder="Password" />
-            <input type="text" name="confirmPassword" value={userRegistration.confirmPassword} onChange={handleSignupChange} autoComplete="off" placeholder="Confirm Password" />
-            <button onClick={handleSignupSubmit} >SignUp</button>
+            <input className="input" type="text" name="username" value={userRegistration.username} onChange={handleSignupChange} autoComplete="off" placeholder="Name" />
+            <input className="input" type="email" name="email" value={userRegistration.email} onChange={handleSignupChange} autoComplete="off" placeholder="Email" />
+            <input className="input" type="text" name="password" value={userRegistration.password} onChange={handleSignupChange} autoComplete="off" placeholder="Password" />
+            <input className="input" type={ show ? "text" : "password" } name="confirmPassword" value={userRegistration.confirmPassword} onChange={handleSignupChange} autoComplete="off" placeholder="Confirm Password" />
+            <button type="button" className="show-btn" onClick={() => setShow(!show) } > {show ? "Hide" : "Show"} </button>
+            <div>
+            <button className="submit-btn" onClick={handleSignupSubmit} >SignUp</button>
+            </div>
             </form>
             <h3>Already Have an account? </h3>
-            <Link to="/login" >Click here to Login</Link>
+            <Link className="Link" to="/login" >Click here to Login</Link>
 
         </div>
     )

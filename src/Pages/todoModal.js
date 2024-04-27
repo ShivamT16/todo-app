@@ -29,11 +29,11 @@ export const TodoModal = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 200,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    border: '2px solid skyblue',
+    boxShadow: 0,
+    p: 6,
   };
 
   const handleChange = (e) => {
@@ -57,7 +57,6 @@ export const TodoModal = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     dispatch(updateTodo(newTodo))
-    console.log(newTodo)
     handleClose()
     setTimeout(() => {
         navigate("/", { replace: true });
@@ -79,15 +78,16 @@ export const TodoModal = () => {
       >
         <Box sx={style}>
         <form>
-            Title: <input type="text" name="title" value={newTodo.title} autoComplete="off" onChange={handleChange} />
-            Description: <input type="text" name="description" value={newTodo.description} autoComplete="off" onChange={handleChange} />
+            Title: <input className="input" type="text" name="title" value={newTodo.title} autoComplete="off" onChange={handleChange} />
+            Description: <input className="input" type="text" name="description" value={newTodo.description} autoComplete="off" onChange={handleChange} />
             Status:
-            <select name="status" value={newTodo.status} onChange={handleChange} >
+            <select className="input" name="status" value={newTodo.status} onChange={handleChange} >
                 <option >Status</option>
                 <option>Completed</option>
                 <option>Not Completed</option>
             </select>
-            { todos ? <button onClick={handleUpdate} >Update Todo</button> : <button onClick={handleSubmit} >Add Todo</button>}
+            { todos ? <button className="submit-btn" onClick={handleUpdate} >Update Todo</button> : 
+            <button className="submit-btn" onClick={handleSubmit} >Add Todo</button>}
             </form> 
         </Box>
       </Modal>

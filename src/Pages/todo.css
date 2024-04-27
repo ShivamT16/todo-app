@@ -1,0 +1,54 @@
+.link{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    background-color: yellow;
+    padding: .5rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    width: fit-content;
+}
+.todo-main{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    text-align: left;
+    margin: .5rem;
+}
+.todo-list{
+    border: 2px solid skyblue;
+    border-radius: 1rem;
+    padding: 0rem .5rem;
+    font-size: 1.1rem;
+}
+.title{
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    width: 8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.description{
+    width: 8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  
+}
+.todo-link{
+    text-decoration: none;
+    color: black;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin: -1rem 0rem;
+    cursor: pointer;
+    color: darkslateblue;
+    width: fit-content;
+}
