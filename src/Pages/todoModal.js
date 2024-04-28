@@ -7,7 +7,6 @@ import Modal from '@mui/material/Modal';
 import { useNavigate, useParams } from "react-router-dom";
 
 export const TodoModal = () => {
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {id} = useParams()

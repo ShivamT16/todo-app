@@ -61,7 +61,7 @@
 }
 .todo-link{
     text-decoration: none;
-    color: black;
+    margin-top: -.2rem;
 }
 .btn{
     display: flex;
@@ -71,4 +71,8 @@
     cursor: pointer;
     color: darkslateblue;
     width: fit-content;
+}
+.dragDrop{
+    margin: 0.2rem 1rem -0.5rem 3rem;
+    cursor: grab;
 }
