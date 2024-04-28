@@ -46,7 +46,10 @@ export const Signup = () => {
               } else {
                 if (userRegistration.password === userRegistration.confirmPassword) {
                   dispatch(signup(userRegistration))
-                  navigate("/", { replace: true })
+                  toast.success("Welcome");
+                  setTimeout(() => {
+                    navigate("/", { replace: true });
+                  }, 1000);
                 } else {
                   toast.error("Passwords don't match");
                 }

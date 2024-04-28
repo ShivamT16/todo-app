@@ -38,7 +38,9 @@ export const Login = () => {
         if (findUser && findUser.password === userLogin.password) {
             dispatch(login(userLogin))
              toast.success("Welcome");
-             navigate("/", { replace: true })
+             setTimeout(() => {
+              navigate("/", { replace: true });
+            }, 1000);
            } 
            else {
              toast.error("Credentials Invalid")
@@ -52,7 +54,7 @@ export const Login = () => {
             <div className="form" >
             <form>
             <div>
-            <input className="input" type="text" name="email" value={userLogin.email} onChange={handleChange} autoComplete="off" placeholder="Email" />
+            <input className="input" type="email" name="email" value={userLogin.email} onChange={handleChange} autoComplete="off" placeholder="Email" />
             </div>
             <div>
             <input className="input" type={ show ? "text" : "password" } name="password" value={userLogin.password} onChange={handleChange} autoComplete="off" placeholder="Password" />

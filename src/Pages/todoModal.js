@@ -43,12 +43,7 @@ export const TodoModal = () => {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(addTodo(newTodo))
-      setNewTodo({
-          title: "",
-          description: "",
-          status: "",
-      }) 
+      dispatch(addTodo(newTodo)) 
       handleClose()
       navigate("/", { replace: true })
   }

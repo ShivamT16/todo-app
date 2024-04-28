@@ -5,6 +5,9 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import "./todo.css"
 
 export const Todo = () => {
@@ -25,7 +28,7 @@ export const Todo = () => {
         <input className="search-input" autoComplete="off" type="text" onChange={(e) => setFilter(e.target.value.toLowerCase())} placeholder="Search..." />
         </div>
         <div className="todo-main" >
-        { 
+          {todo.length > 0 ?
             todo.map((element, index) => 
                 <div className="todo-list" key={element._id} > 
                 <Link className="todo-link" to={`/todo/${element._id}`} >
@@ -34,12 +37,13 @@ export const Todo = () => {
                 <p style={{color: element.status === "Completed" ? "green" : "red"  }} >{element.status}</p>
                 </Link>
                 <div className="btn"> 
-                <p onClick={()=> dispatch(removeTodo(element._id)) } > <DeleteIcon fontSize="small" /> </p>
+                <p onClick={()=> {dispatch(removeTodo(element._id)); toast.error("Todo Removed")} } > <DeleteIcon fontSize="small" /> </p>
                 <Link to={`/editTodo/${element._id}`} > <EditNoteIcon /> </Link>
                 </div>
                 </div>
-        ) }
+        ) : <h2>No Todos found</h2> }
         </div>
+        <ToastContainer autoClose={1000} />
     </div>
   )
 }
