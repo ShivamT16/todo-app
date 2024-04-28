@@ -19,6 +19,7 @@ function App() {
           {status ?
           <NavLink className='navLink' onClick={() => dispatch({type: "LOGOUT" })} >Logout</NavLink>
            : <NavLink className='navLink' to="/login" >Login</NavLink> }
+          <NavLink className='navLink' to='https://github.com/ShivamT16/todo-app' target='_blank' >GitHub</NavLink>
         </nav>
         <Routes>
           <Route path="/" element={<Todo />} />

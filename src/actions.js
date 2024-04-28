@@ -2,7 +2,7 @@
 export const fetchTodo = () => async(dispatch) => {
     try{
         dispatch({type: "FETCH_DATA_LOADING" });
-        const response = await fetch("https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo")
+        const response = await fetch("https://todo-app-repl.vercel.app/todo")
         const data = await response.json();
         dispatch({type: "FETCH_TODO_SUCCESS", payload: data })
     }
@@ -13,7 +13,7 @@ export const fetchTodo = () => async(dispatch) => {
 
 export const addTodo = (newTodo) => async(dispatch) => {
     try{
-        const response = await fetch("https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo",{
+        const response = await fetch("https://todo-app-repl.vercel.app/todo",{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export const addTodo = (newTodo) => async(dispatch) => {
 
 export const removeTodo = (todoId) => async(dispatch) => {
     try{
-        const response = await fetch(`https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo/${todoId}`,{
+        const response = await fetch(`https://todo-app-repl.vercel.app/todo/${todoId}`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export const removeTodo = (todoId) => async(dispatch) => {
 export const updateTodo = (todo,todoID) => async(dispatch) => {
     console.log(todo)
     try{
-        const response = await fetch(`https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo/${todoID}`,{
+        const response = await fetch(`https://todo-app-repl.vercel.app/todo/${todoID}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export const updateTodo = (todo,todoID) => async(dispatch) => {
 export const fetchUsers = () => async(dispatch) => {
   try{
     dispatch({type: "FETCH_DATA_LOADING" });
-    const response = await fetch("https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/todo/user")
+    const response = await fetch("https://todo-app-repl.vercel.app/todo/user")
     const data = await response.json()
     dispatch({ type: "FETCH_ALL_USERS", payload: data })
   }
@@ -82,7 +82,7 @@ export const fetchUsers = () => async(dispatch) => {
 
 export const signup = (newUser) => async(dispatch) => {
     try{
-        const response = await fetch("https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/signin", {
+        const response = await fetch("https://todo-app-repl.vercel.app/signin", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ export const signup = (newUser) => async(dispatch) => {
 
 export const login = (userLogin) => async(dispatch) => {
     try{
-        const response = await fetch("https://4faeaade-ef97-42d2-b4c4-4853f6d8d900-00-2ndp2j5mks2nu.kirk.replit.dev/login", {
+        const response = await fetch("https://todo-app-repl.vercel.app/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
